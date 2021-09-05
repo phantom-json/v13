@@ -1,4 +1,4 @@
-import DiscordJS, { Intents, Interaction } from 'discord.js'
+import DiscordJS, { Intents } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -33,7 +33,7 @@ client.on('ready', () => {
         options: [
             {
                 name: 'num1',
-                description: 'the first numbers',
+                description: 'the first number',
                 required: true,
                 type: DiscordJS.Constants.ApplicationCommandOptionTypes.NUMBER
             },

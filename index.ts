@@ -1,4 +1,4 @@
-import DiscordJS, { Intents } from 'discord.js'
+import DiscordJS, { Intents, Interaction } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config()
 

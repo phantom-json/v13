@@ -103,3 +103,89 @@ client.on('messageCreate', (message) => {
   })
 ```
 Here again we see the `client.on` event listener. here it is listening for a new message (`messageCreate`) if the new message is equal to ping the bot replies with pong. this is the base of our commands.
+
+---
+### 2) Adding basic guild specific slash commands.
+
+slash commands are a new feature added in discord version v13. slash commands give easy access to bot commands. 
+
+```typescript
+client.on('ready', () => {
+    console.log(`the bot is ready`)
+    
+    const guildId = "763349277493559296"
+    const guild = client.guilds.cache.get(guildId)
+    let commands
+
+    if (guild) {
+        commands = guild.commands
+    } else {
+        commands = client.application?.commands
+    }
+
+    commands?.create({
+        name: 'ping',
+        description: 'replies with pong'
+    })
+})
+
+client.on('interactionCreate', async (Interaction) => {
+    if (!Interaction.isCommand()) {
+        return
+    }
+
+    const { commandName, options} = Interaction
+
+    if (commandName === 'ping') {
+        Interaction.reply({
+            content: 'pong',
+            ephemeral: true,
+        })
+    }
+})
+```
+
+---
+The first step of creating a guild specific slash command is specifying a guild Id, and then finding the guild using the Id specified. we do this with
+```typescript
+const guildId = "763349277493559296"
+const guild = client.guilds.cache.get(guildId)
+let commands
+
+if (guild) {
+    commands = guild.commands
+} else {
+    commands = client.application?.commands
+}
+```
+
+Next is to create the command name & description this can be done using a new function called `commands.create({})`. There are 5 options for this which can be found [here](https://discord.js.org/#/docs/main/stable/typedef/ApplicationCommandData).
+
+```typescript
+commands?.create({
+    name: 'ping',
+    description: 'replies with pong'
+})
+```
+
+Now that we have created our commands we must listen for them, we use our client listener `client.on()` as slash commands are a property of the client. we also check if the interaction is in fact a valid command. 
+
+we then destructure the commandName and options from our interaction, now checking if the interaction is our command we assign a reaction using `interaction.reply({})` adding the content and ephemeral properties, content is what will be sent and ephemeral is if the reply will be shown privately or publicly.
+
+```typescript
+client.on('interactionCreate', async (Interaction) => {
+    if (!Interaction.isCommand()) {
+        return
+    }
+
+    const { commandName, options} = Interaction
+
+    if (commandName === 'ping') {
+        Interaction.reply({
+            content: 'pong',
+            ephemeral: true,
+        })
+    }
+})
+```
+

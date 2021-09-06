@@ -1,4 +1,4 @@
-import DiscordJS, { Intents, Interaction } from 'discord.js'
+import DiscordJS, { Intents } from 'discord.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -29,7 +29,7 @@ client.on('ready', () => {
 
     commands?.create({
         name: 'add',
-        description: ',dds two numbers',
+        description: 'adds two number',
         options: [
             {
                 name: 'num1',

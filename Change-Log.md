@@ -6,6 +6,10 @@
 > build 0.02-dev, added support for slash commands. added [Docs.md](https://github.com/phantom-json/v13/blob/master/Docs.md) for detailed transcript of all code
 
 > build 0.02, added WOKCommands command handler.
+
+> build 0.03, added commands spank and ban, also added button feature example.
 ### other resources
 - **[github repo](https://github.com/phantom-json/v13)**
 - **[Worn Off Keys youtube](https://www.youtube.com/channel/UChPrh75CmPP9Ig6jISPnfNA)**
+- **[Discord.js Docs](https://discord.js.org/#/docs/main/stable/general/welcome)**
+- **[Discord.js guide](https://discordjs.guide/#before-you-begin)**

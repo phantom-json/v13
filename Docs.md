@@ -253,3 +253,59 @@ export default {
 however we can add more features using properties of the WOKcommands package, one being `slash` and `testOnly`. slash defines if it will be a slash command, a normal command or both. where as testOnly works to define if it is guild specific or global, true means it is guild specific and vice versa.
 
 when testing we found that although adding the relevant parameters to `callback: ({})` did work it was not necessary as long as we used `return` when sending our reply to the user.
+
+an in practice example of this format in use can be found [here](https://github.com/phantom-json/v13/blob/master/commands/spank.ts)
+
+---
+
+## 4) working with buttons 
+
+buttons are a fancy way of giving a user set options. discord veterans will have seen things like reaction roles and other emoji reaction related things, Buttons are similar. As the name suggests buttons create a new message object that when clicked by a user can be collected and turned into an output of some sort. 
+
+buttons follow the new `MessageActionRow` feature in discord.js v13, we can create buttons using the following format.
+```typescript
+    callback: async ({}) => {
+        const row = new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+            .setCustomId('')
+            .setEmoji('')
+            .setLabel('')
+            .setStyle('')
+        )
+    }
+```
+
+in v13 Discord changed how you attach embeds and other things to a message. we now have factors such as: `content`, `components`, `embeds`and `ephemeral`.
+
+these 4 make up the main factors of sending a message in v13. content is self explanatory, it accepts a string for the main text of the message. embeds the same it accepts `MessageEmbeds`. components and ephemeral are new. components are used to hold buttons and other new `MessageActionRow` components, where as ephemeral like we used before tells discord if everyone or only the message author can read the reply. 
+
+```typescript
+async interaction.reply({
+    content: '',
+    components: [],
+    embeds: [],
+    ephemeral: true/false,
+})
+```
+in our example we are using buttons to confirm a ban. so we need a filter. 
+```typescript
+const filter = (BtsInt: ButtonInteraction) => {
+    return msgInt.user.id === BtnInt.user.id
+}
+```
+
+we can now collect them using a collector event. 
+```typescript
+    const collector = channel.createMessageComponentCollector({
+        filter,
+        max: int,
+        time: 1000 * int,
+    })
+
+    collector.on('end', async (collection) => {
+        // do stuff
+    })
+```
+
+in the code above we define the collector and its perimeters here we pass in our filter as well as `max` and `time` these two components define how many times our button can be clicked and the time our button is active for. 

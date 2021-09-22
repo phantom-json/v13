@@ -14,7 +14,7 @@ export default {
 
     options: [
         {
-          name: 'User',
+          name: 'user',
           description: 'The user you wish to spank',
           required: true,
           type: DiscordJS.Constants.ApplicationCommandOptionTypes.USER,

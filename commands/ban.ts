@@ -52,7 +52,7 @@ export default {
         await msgInt.reply({
             content: `Are you sure you want to ban ${bannedUser}`,
             components: [row],
-            ephemeral: true,
+            ephemeral: true,  
         })
 
         const filter = (BtnInt: ButtonInteraction) => {

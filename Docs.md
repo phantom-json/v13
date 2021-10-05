@@ -5,8 +5,8 @@ This is a full in depth guide to djs v13, this guide includes. this tutorial ass
 1. [Basic setup of a bot, windows & linux](https://github.com/phantom-json/v13/blob/master/Docs.md#1-basic-bot-setup-for-windows-and-linux)
 2. [Adding basic guild specific slash commands](https://github.com/phantom-json/v13/blob/master/Docs.md#2-adding-basic-guild-specific-slash-commands)
 3. [adding advanced commands and global slash commands](https://github.com/phantom-json/v13/blob/master/Docs.md#3-adding-advanced-commands-and-global-slash-commands)
-4. [Organizing slash commands]()
-5. [Adding regular commands]()
+4. [working with buttons](https://github.com/phantom-json/v13/blob/master/Docs.md#4-working-with-buttons)
+5. [connecting to databases]()
 
 ---
 ## 1) Basic bot setup for windows and linux
